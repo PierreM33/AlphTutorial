@@ -1,0 +1,84 @@
+Contract Game() {
+    event GamePlayed(
+        player: Address,      // Adresse du joueur
+        playerChoice: U256,   // Choix du joueur (0, 1, 2)
+        contractChoice: U256, // Choix du contrat (0, 1, 2)
+        betAmount: U256,      // Montant misé
+        won: Bool             // Vrai si le joueur gagne, faux sinon
+    )
+
+    enum Choices {
+        Rock = 0
+        Paper = 1
+        Scissors = 2
+    }
+
+    enum ErrorCodes {
+        InvalidChoice = 0
+        InsufficientBet = 1
+        InsufficientFunds = 2
+        Unauthorized = 3 
+    }
+
+    fn getContractChoice() -> U256 {
+        let time = blockTimeStamp!()
+        return time % 3
+    }
+
+    @using(preapprovedAssets = true, assetsInContract = true) 
+    pub fn play(playerChoice: U256, betAmount: U256) -> () {
+        // Vérifie que l'appelant de la fonction est une adresse valide et non un contrat invalide.  
+        // Cela empêche les appels provenant d'une adresse nulle ou non autorisée.  
+        checkCaller!(callerAddress!() != nullContractAddress!(), ErrorCodes.Unauthorized)
+
+    
+        // Validation du choix et du montant
+        assert!(playerChoice <= 2, ErrorCodes.InvalidChoice)
+        assert!(betAmount > 0, ErrorCodes.InsufficientBet)
+    
+        // Adresse du joueur
+        let player = callerAddress!()
+    
+        // Vérifie que le contrat dispose d'assez de fonds avant d'accepter la mise du joueur.  
+        // Cela garantit qu'il pourra payer une éventuelle récompense si le joueur gagne.
+        let contractBalance = tokenRemaining!(selfAddress!(), ALPH)
+
+        assert!(contractBalance >= betAmount, ErrorCodes.InsufficientFunds)
+
+    
+        // Accepter les fonds pré-approuvés de l'appelant
+        transferTokenToSelf!(player, ALPH, betAmount)
+    
+        // Choix aléatoire du contrat
+        let contractChoice = getContractChoice()
+    
+        // Calcul du résultat du jeu
+        let won = (playerChoice == Choices.Rock && contractChoice == Choices.Scissors) ||
+                  (playerChoice == Choices.Paper && contractChoice == Choices.Rock) ||
+                  (playerChoice == Choices.Scissors && contractChoice == Choices.Paper)
+    
+        if (won) {
+            // Calcul de la récompense
+            let reward = betAmount + (betAmount / 2)
+    
+            // Vérification des fonds avant le transfert de la récompense
+            let contractBalanceForReward  = tokenRemaining!(selfAddress!(), ALPH)
+            assert!(contractBalanceForReward >= reward, ErrorCodes.InsufficientFunds)
+    
+            // Transfert de la récompense au joueur
+            transferToken!(selfAddress!(), player, ALPH, reward)
+        }
+    
+        // Émission de l'événement pour enregistrer la partie
+        emit GamePlayed(player, playerChoice, contractChoice, betAmount, won)
+    }
+    
+    
+    @using(preapprovedAssets = true, assetsInContract = true) 
+    pub fn retrieveGameBalance() -> U256 {
+        checkCaller!(callerAddress!() != nullContractAddress!(), ErrorCodes.Unauthorized)
+        let balance = tokenRemaining!(selfAddress!(), ALPH)
+        return balance
+    }
+        
+}

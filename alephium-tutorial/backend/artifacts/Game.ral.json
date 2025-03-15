@@ -1,0 +1,128 @@
+{
+  "version": "v3.12.1",
+  "name": "Game",
+  "bytecode": "00030e408b40a200000001010656170016000f2e0201010208004052d356e21538b4ca460f7b16000e320c7b16010c330d7bb41702b2a4170316031601340e7b16021601a90000170416000c2f16040e2f1a16000d2f16040c2f1a1b16000e2f16040d2f1a1b170516054c12160116010e2d2a1706b2a4170716071606340e7bb216021606a705160216001604160116057301010001010bd3663eba8ab4ca460f7bb2a41700160002",
+  "codeHash": "e82b49590d6f99b960a248be94a4be9000240c24ff067db3f0d79660ab71c109",
+  "fieldsSig": {
+    "names": [],
+    "types": [],
+    "isMutable": []
+  },
+  "eventsSig": [
+    {
+      "name": "GamePlayed",
+      "fieldNames": [
+        "player",
+        "playerChoice",
+        "contractChoice",
+        "betAmount",
+        "won"
+      ],
+      "fieldTypes": [
+        "Address",
+        "U256",
+        "U256",
+        "U256",
+        "Bool"
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "name": "getContractChoice",
+      "paramNames": [],
+      "paramTypes": [],
+      "paramIsMutable": [],
+      "returnTypes": [
+        "U256"
+      ]
+    },
+    {
+      "name": "play",
+      "paramNames": [
+        "playerChoice",
+        "betAmount"
+      ],
+      "paramTypes": [
+        "U256",
+        "U256"
+      ],
+      "paramIsMutable": [
+        false,
+        false
+      ],
+      "returnTypes": []
+    },
+    {
+      "name": "retrieveGameBalance",
+      "paramNames": [],
+      "paramTypes": [],
+      "paramIsMutable": [],
+      "returnTypes": [
+        "U256"
+      ]
+    }
+  ],
+  "constants": [],
+  "enums": [
+    {
+      "name": "Choices",
+      "fields": [
+        {
+          "name": "Rock",
+          "value": {
+            "type": "U256",
+            "value": "0"
+          }
+        },
+        {
+          "name": "Paper",
+          "value": {
+            "type": "U256",
+            "value": "1"
+          }
+        },
+        {
+          "name": "Scissors",
+          "value": {
+            "type": "U256",
+            "value": "2"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ErrorCodes",
+      "fields": [
+        {
+          "name": "InvalidChoice",
+          "value": {
+            "type": "U256",
+            "value": "0"
+          }
+        },
+        {
+          "name": "InsufficientBet",
+          "value": {
+            "type": "U256",
+            "value": "1"
+          }
+        },
+        {
+          "name": "InsufficientFunds",
+          "value": {
+            "type": "U256",
+            "value": "2"
+          }
+        },
+        {
+          "name": "Unauthorized",
+          "value": {
+            "type": "U256",
+            "value": "3"
+          }
+        }
+      ]
+    }
+  ]
+}

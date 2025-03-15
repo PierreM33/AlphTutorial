@@ -1,0 +1,21 @@
+{
+  "fullNodeVersion": "v3.12.1",
+  "compilerOptionsUsed": {
+    "ignoreUnusedConstantsWarnings": false,
+    "ignoreUnusedVariablesWarnings": false,
+    "ignoreUnusedFieldsWarnings": false,
+    "ignoreUnusedPrivateFunctionsWarnings": false,
+    "ignoreUpdateFieldsCheckWarnings": false,
+    "ignoreCheckExternalCallerWarnings": false,
+    "ignoreUnusedFunctionReturnWarnings": false,
+    "skipAbstractContractCheck": false
+  },
+  "infos": {
+    "Game": {
+      "sourceFile": "game.ral",
+      "sourceCodeHash": "316d7bb17dfbf965143f0ea63183f8c095677012b0aaae180f9236cd723ff207",
+      "bytecodeDebugPatch": "",
+      "codeHashDebug": "e82b49590d6f99b960a248be94a4be9000240c24ff067db3f0d79660ab71c109"
+    }
+  }
+}
