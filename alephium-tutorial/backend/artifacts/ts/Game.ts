@@ -170,7 +170,7 @@ export const Game = new Factory(
   Contract.fromJson(
     GameContractJson,
     "",
-    "e82b49590d6f99b960a248be94a4be9000240c24ff067db3f0d79660ab71c109",
+    "4210fe845daeede0c8495e32470122f07b142fc6ed597308739243aafcb8d82a",
     []
   )
 );

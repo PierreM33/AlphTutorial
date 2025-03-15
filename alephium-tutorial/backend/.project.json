@@ -13,9 +13,9 @@
   "infos": {
     "Game": {
       "sourceFile": "game.ral",
-      "sourceCodeHash": "316d7bb17dfbf965143f0ea63183f8c095677012b0aaae180f9236cd723ff207",
+      "sourceCodeHash": "d076b13e8d6a2b47708f80dd0396a1d1a8b84a4820a6dda6d41edcf0e77aa751",
       "bytecodeDebugPatch": "",
-      "codeHashDebug": "e82b49590d6f99b960a248be94a4be9000240c24ff067db3f0d79660ab71c109"
+      "codeHashDebug": "4210fe845daeede0c8495e32470122f07b142fc6ed597308739243aafcb8d82a"
     }
   }
 }

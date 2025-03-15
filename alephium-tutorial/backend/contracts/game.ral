@@ -58,8 +58,9 @@ Contract Game() {
                   (playerChoice == Choices.Scissors && contractChoice == Choices.Paper)
     
         if (won) {
+            let test = 2
             // Calcul de la récompense
-            let reward = betAmount + (betAmount / 2)
+            let reward = betAmount + test
     
             // Vérification des fonds avant le transfert de la récompense
             let contractBalanceForReward  = tokenRemaining!(selfAddress!(), ALPH)
